@@ -1,13 +1,25 @@
+; old
+((lambda ()
+	(list (first '(TYPE PRINT DEL)) (first '(H (H J O) (UJ N))) (first '(READ  SAVE  LOAD (TXT))))
+))
+; new
 ((lambda ()
 	(list (nth 0 '(TYPE PRINT DEL)) (nth 0 '(H (H J O) (UJ N))) (nth 0 '(READ  SAVE  LOAD (TXT))))
 ))
 
+; old
 (define (example list1 list2 list3 one two tree)
+	(if(and(>= (length list1)one)(>= (length list2)two)(>= (length list3)tree))  
+	(list (nth (- one 1) list1)(nth (- two 1) list2) (nth (- tree 1) list3)) 
+	"Error"
+))
+; new
+(define (example_1 list1 list2 list3 one two tree)
   (cond
    ((and(>= (length list1)one)
         (>= (length list2)two)
         (>= (length list3)tree)) 
-    (list (nth (- one 1) list1)(nth (- two 1) list2) (nth (- tree 1) list3)))
+    (append (cons (nth (- one 1) list1) (nth (- two 1) list2)) (cons (nth (- tree 1) list3) )))
    ("Error")
    )	 
 )
